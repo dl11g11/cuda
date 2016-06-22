@@ -68,7 +68,7 @@ __global__ void matrixMultiplyOptimised(float *a, float *b, float*c, int width)
 void matrixMultiplyCPU(float *a, float *b, float *c, int width)
 {
 	float result;
-	for(int row=0; row_width; row++)
+	for(int row=0; row<width; row++)
 	{
 		for(int col=0; col<width; col++)
 		{
