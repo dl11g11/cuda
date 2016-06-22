@@ -1,5 +1,5 @@
 #include "cuda_runtime.h"
-#include "device_launch_paramters.h"
+#include "device_launch_parameters.h"
 #include <stdio.h>
 #include <omp.h>
 
@@ -17,7 +17,7 @@ __global__ void matrixMultiplySimple(float *a, float *b, float *c, int width)
 	float result = 0;
 
 	// do dot product between row of a and column of b
-	for(int i=0, i<width; i++)
+	for(int i=0; i<width; i++)
 	{
 		result += a[row*width+i] * b[i*width+col];
 	}
@@ -53,7 +53,7 @@ __global__ void matrixMultiplyOptimised(float *a, float *b, float*c, int width)
 		// to continue
 		__syncthreads();
 		// do dot product between row of s_a and column of s_b
-		for(int i=0;, i<TILE_WIDTH; i++)
+		for(int i=0; i<TILE_WIDTH; i++)
 		{
 			result += s_a[ty][i] * s_b[i][tx];
 		}
@@ -68,7 +68,7 @@ __global__ void matrixMultiplyOptimised(float *a, float *b, float*c, int width)
 void matrixMultiplyCPU(float *a, float *b, float *c, int width)
 {
 	float result;
-	for(int row=0; row_width; row++)
+	for(int row=0; row*width; row++)
 	{
 		for(int col=0; col<width; col++)
 		{
